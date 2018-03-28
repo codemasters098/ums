@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin | UMS</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  </head>
+
+  <body>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Admin Panel</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/admin">Home</a></li>
+        <li><a href="/admin">Manage Users</a></li>
+
+        <li><a href="/admin/new">Add new User</a></li>
+        <% if session[:admin_id] %>
+          <li><%= link_to 'Logout',"/log", method: :get, data: { confirm: 'Are you sure?' } %> </li>
+
+         <li><strong><%= session[:admin_name] %></strong></li> 
+        <% end %> 
+        
+      </ul>
+    </div>
+  </nav>
+
+    <%= yield %>
+  </body>
+</html>
