@@ -46,19 +46,19 @@ class User < ApplicationRecord
 
     def password_reset_expired?
     	reset_sent_at < 2.hours.ago
- 	end
+ 	  end
 
   	private
 
   	def User.new_token
     	SecureRandom.urlsafe_base64
-	end
+	   end
 
-	def User.digest(string)
+	  def User.digest(string)
     	cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
     	BCrypt::Password.create(string, cost: cost)
- 	end
+ 	  end
 
  	
 
