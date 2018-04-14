@@ -25,12 +25,12 @@ class User < ApplicationRecord
 	    digest = send("#{attribute}_digest")
 	    return false if digest.nil?
 	    BCrypt::Password.new(digest).is_password?(token)
-	end
+		end
 
-	def activate
+		def activate
     	update_attribute(:activated,    true)
     	update_attribute(:activated_at, Time.zone.now)
-	end
+		end
 
 	# Sets the password reset attributes.
     def create_reset_digest
@@ -46,19 +46,19 @@ class User < ApplicationRecord
 
     def password_reset_expired?
     	reset_sent_at < 2.hours.ago
- 	end
+ 		end
 
-  	private
+  	
 
-  	def User.new_token
-    	SecureRandom.urlsafe_base64
-	end
+	  def User.new_token
+	    	SecureRandom.urlsafe_base64
+		end
 
-	def User.digest(string)
-    	cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                  BCrypt::Engine.cost
-    	BCrypt::Password.create(string, cost: cost)
- 	end
+		def User.digest(string)
+	    	cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+	                                                  BCrypt::Engine.cost
+	    	BCrypt::Password.create(string, cost: cost)
+	 	end
 
  	
 
