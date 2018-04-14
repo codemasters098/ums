@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
  
+  get 'password_resets/new'
+
+  get 'password_resets/edit'
+
   root "home#index"
   
   match "/users" => "admin#create", :via => :post
@@ -20,5 +24,10 @@ Rails.application.routes.draw do
   match "/log" => "admin#log_out", :via => :get
 
   match "/sign_in_post" => "home#sign_in_post", :via => :post
+
+  resources :account_activation, only: [:edit]
+  resources :password_resets,     only: [:new, :create, :edit, :update]
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
