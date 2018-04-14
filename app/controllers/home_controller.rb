@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   
   before_action :authenticate_user, only: [:index]
+  #before_create :create_activation_digest
 
   def sign_in
     @user = User.new
@@ -17,6 +18,7 @@ class HomeController < ApplicationController
     respond_to do |format|
       
       if @user.save
+        UserMailer.account_activation(@user).deliver
         format.html { redirect_to :controller => 'home', :action => 'index' }
 
       else
@@ -87,4 +89,16 @@ class HomeController < ApplicationController
     def log_params
       params.permit(:email,:password)
     end
+
+    # def create_activation_digest
+    #   # Create the token and digest.
+    #   self.activation_token  = User.new_token
+    #   self.activation_digest = User.digest(activation_token)
+    # end
+
+    def remember
+      self.remember_token = User.new_token
+      update_attribute(:remember_digest, User.digest(remember_token))
+    end
+
 end

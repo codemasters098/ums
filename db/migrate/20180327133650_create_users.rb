@@ -7,9 +7,12 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :email
       t.boolean :admin
       t.string :password
-      t.boolean :activated
 
       t.timestamps
     end
   end
 end
+
+
+
+#User.create!(:first_name=>'Louise', :last_name=> 'Heneghan', :username=>'louiseheneghan', :admin=>true, :activated=>true, :email => 'louheneghan@gmail.com', :password => 'Griffith123.', :password_confirmation => 'Griffith123.')

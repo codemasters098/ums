@@ -3,3 +3,14 @@ require_relative 'application'
 
 # Initialize the Rails application.
 Rails.application.initialize!
+
+
+ActionMailer::Base.smtp_settings = {
+  :user_name => 'code.masters',
+  :password => 'qwerty66449',
+  :domain => 'bcsf12a051.apphb.com',
+  :address => 'smtp.sendgrid.net',
+  :port => 587,
+  :authentication => :plain,
+  :enable_starttls_auto => true
+}
