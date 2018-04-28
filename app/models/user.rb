@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-	
+	has_one :resume
 	has_secure_password
 
 	validates_length_of :first_name, :maximum => 20
